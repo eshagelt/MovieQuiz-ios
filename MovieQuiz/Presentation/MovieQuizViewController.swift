@@ -85,6 +85,7 @@ final class MovieQuizViewController: UIViewController {
         super.viewDidLoad()
         let currentQuestion = convert(model: questions[currentQuestionIndex])
         show(quiz: QuizStepViewModel(image: currentQuestion.image, question: currentQuestion.question, questionNumber: currentQuestion.questionNumber))
+        imageView.layer.cornerRadius = 20
     }
     
     private func convert(model: QuizQuestion) -> QuizStepViewModel {
@@ -122,7 +123,6 @@ final class MovieQuizViewController: UIViewController {
         
         imageView.layer.masksToBounds = true
         imageView.layer.borderWidth = 8
-        imageView.layer.cornerRadius = 20
         imageView.layer.borderColor = isCorrect ? UIColor.ypGreen.cgColor : UIColor.ypRed.cgColor
         
         self.noButton.isEnabled = false
