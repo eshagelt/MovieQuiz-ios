@@ -14,12 +14,12 @@ final class AlertPresenter: AlertPresenterProtocol {
         self.delegate = delegate
     }
     
-    func show(quiz result: QuizResultsViewModel) {
-        let alert = UIAlertController(title: result.title,
-                                      message: result.text,
+    func show(alertModel: AlertModel) {
+        let alert = UIAlertController(title: alertModel.title,
+                                      message: alertModel.message,
                                       preferredStyle: .alert)
         
-        let action = UIAlertAction(title: result.buttonText, style: .default)
+        let action = UIAlertAction(title: alertModel.buttonText, style: .default)
         
             alert.addAction(action)
             delegate?.present(alert, animated: true, completion: nil)

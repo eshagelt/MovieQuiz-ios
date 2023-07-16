@@ -16,6 +16,8 @@ final class MovieQuizViewController: UIViewController, QuestionFactoryDelegate {
     private let questionsAmount: Int = 10
     private var questionFactory: QuestionFactoryProtocol?
     private var currentQuestion: QuizQuestion?
+    private var alertPresenter: AlertPresenter?
+    private var statisticService: StatisticService?
     
     struct ViewModel {
         let image: UIImage
@@ -30,8 +32,10 @@ final class MovieQuizViewController: UIViewController, QuestionFactoryDelegate {
         
         questionFactory = QuestionFactory(delegate: self)
         questionFactory?.requestNextQuestion()
-        
+        alertPresenter = AlertPresenter(delegate: self)
+        statisticService = StatisticServiceImplementation()
     }
+    
     
     // MARK: - QuestionFactoryDelegate
     
@@ -102,18 +106,37 @@ final class MovieQuizViewController: UIViewController, QuestionFactoryDelegate {
     
     private func showNextQuestionOrResults() {
         if currentQuestionIndex == questionsAmount - 1 {
-            let text = correctAnswers == questionsAmount ?
-            "Поздравляем, вы ответили на 10 из 10!" :
-            "Вы ответили на \(correctAnswers) из 10, попробуйте еще раз!"
+            guard let statisticService = statisticService else {
+                return
+            }
+            statisticService.store(correct: correctAnswers, total: questionsAmount)
             
-            let viewModel = QuizResultsViewModel(title: "Этот раунд закончен", text: text, buttonText: "Сыграть еще раз")
+            let gamesAmountText = " Количество сыгранных квизов: \(statisticService.gamesCount)"
+            let bestGameText = "Рекорд: \(statisticService.bestGame.correct)/\(statisticService.bestGame.total) (\(statisticService.bestGame.date.dateTimeString))"
+            let accuracyText = String(format: "Cредняя точность: %.2f%%", statisticService.totalAccuracy)
+            let messageText = "\(gamesAmountText)\n\(bestGameText)\n\(accuracyText)"
             
-            // showAlert()
+
+            let viewModel = AlertModel(
+                    title: "Этот раунд окончена!",
+                    message: "Ваш результат: \(correctAnswers)/\(questionsAmount) \n\(messageText)",
+                    buttonText: "Сыграть еще раз",
+                    completion: { [ weak self ] in
+                        guard let self = self else { return }
+                        self.currentQuestionIndex = 0
+                        self.correctAnswers = 0
+                        self.questionFactory?.requestNextQuestion()
+                    }
+                )
+                
+                alertPresenter?.show(alertModel: viewModel)
+            
         } else {
             currentQuestionIndex += 1
             questionFactory?.requestNextQuestion()
         }
     }
+}
+    
     
    
-}
