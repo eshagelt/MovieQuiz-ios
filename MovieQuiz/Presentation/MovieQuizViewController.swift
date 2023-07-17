@@ -25,6 +25,10 @@ final class MovieQuizViewController: UIViewController, QuestionFactoryDelegate {
         let questionNumber: String
     }
     
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -35,11 +39,6 @@ final class MovieQuizViewController: UIViewController, QuestionFactoryDelegate {
         alertPresenter = AlertPresenter(delegate: self)
         statisticService = StatisticServiceImplementation()
     }
-    
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
-    }
-    
     
     // MARK: - QuestionFactoryDelegate
     
