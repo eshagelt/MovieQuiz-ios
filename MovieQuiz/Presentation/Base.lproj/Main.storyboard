@@ -50,7 +50,7 @@
                                             </label>
                                         </subviews>
                                     </stackView>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Deadpool" translatesAutoresizingMaskIntoConstraints="NO" id="qEv-tk-OXy" userLabel="Preview Image">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="qEv-tk-OXy" userLabel="Preview Image">
                                         <rect key="frame" x="0.0" y="43.5" width="374" height="561"/>
                                         <color key="backgroundColor" name="YP White"/>
                                         <constraints>
@@ -121,6 +121,9 @@
                                     </stackView>
                                 </subviews>
                             </stackView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="8q7-bU-vfa">
+                                <rect key="frame" x="197" y="438" width="20" height="20"/>
+                            </activityIndicatorView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" name="YP Black"/>
@@ -130,12 +133,15 @@
                             <constraint firstItem="Krl-dZ-7Mv" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="L6a-Mb-aHv"/>
                             <constraint firstItem="Rdr-FS-wzN" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="10" id="MB1-WO-qkF"/>
                             <constraint firstItem="qEv-tk-OXy" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="MNh-RU-uvQ"/>
+                            <constraint firstItem="8q7-bU-vfa" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="PqG-U6-eSw"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="F8J-lS-KV6" secondAttribute="trailing" constant="20" id="ThM-AX-FiE"/>
                             <constraint firstItem="Rdr-FS-wzN" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="a6v-G4-aUP"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="qEv-tk-OXy" secondAttribute="trailing" constant="20" id="d7R-ll-zXX"/>
+                            <constraint firstItem="8q7-bU-vfa" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="uhV-Oz-X3N"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="activityIndicator" destination="8q7-bU-vfa" id="r0O-oR-I92"/>
                         <outlet property="counterLabel" destination="0Kj-Th-CR9" id="RX8-iv-1zo"/>
                         <outlet property="imageView" destination="qEv-tk-OXy" id="jSF-7k-eLX"/>
                         <outlet property="noButton" destination="Ycz-qM-oqe" id="aoQ-1d-gkF"/>
@@ -150,9 +156,8 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Deadpool" width="2000" height="3000"/>
         <namedColor name="YP Black">
-            <color red="0.10196078431372549" green="0.10588235294117647" blue="0.13333333333333333" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+            <color red="0.10199999809265137" green="0.10599999874830246" blue="0.13300000131130219" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>
         <namedColor name="YP White">
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
