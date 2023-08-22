@@ -93,11 +93,11 @@ final class MovieQuizPresenter: QuestionFactoryDelegate {
         }
     }
     
-    func switchToNextQuestion() {
+    private func switchToNextQuestion() {
         currentQuestionIndex += 1
     }
     
-    func proceedToNextQuestionOrResults() {
+    private func proceedToNextQuestionOrResults() {
         if self.isLastQuestion() {
             viewController?.showFinalAlert()
         } else {
