@@ -34,14 +34,3 @@ struct MostPopularMovie: Codable {
         case imageURL = "image"
     }
 }
-
-
-
-
-
-
-
-
-
-
-
